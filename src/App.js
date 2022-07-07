@@ -7,6 +7,7 @@ function App() {
   const [searchWord, setSearchWord] = useState('destiny')
   const [pageIndex, setPageIndex] = useState(1)
   const [totalPages, setTotalPages] = useState(0)
+  const [activeMovieIndex, setActiveMovieIndex] = useState(0)
 
   useEffect(() => {
     setPageIndex(1)
@@ -29,7 +30,10 @@ function App() {
 
   const moviesList = movies.map((movie, index) => {
     return (
-    <li key={index}>
+    <li key={index} onClick={()=> {
+      console.log("Click on movie " + index)
+      setActiveMovieIndex(index)
+      }}>
       <h3>{movie.title}</h3>
     </li>
     )
@@ -58,7 +62,12 @@ function App() {
           Previous Page
         </button>
           {pageIndex} / {totalPages}
-        <button onClick={naviageNextPage} disabled={pageIndex === totalPages} >Next Page</button>
+        <button 
+          onClick={naviageNextPage} 
+          disabled={pageIndex === totalPages} 
+        >
+          Next Page
+        </button>
       </div>
     )
   }
